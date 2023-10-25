@@ -1,0 +1,18 @@
+<div class="post-book-comparison-table table-responsive">
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th data-col="current"><%= current_label.capitalize %> Post Count</th>
+        <th data-col="past"><%= past_label.capitalize %> Post Count</th>
+        <th data-col="compare"><%= "Compared to #{past_label}" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-col="current"><%= current_books.count %></td>
+        <td data-col="past"><%= past_books.count %></td>
+        <td data-col="compare"><%= comparison_percentage(current_books.count, past_books.count) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

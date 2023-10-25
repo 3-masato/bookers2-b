@@ -35,3 +35,15 @@
   }
 }
 
+.post-book-comparison-table {
+  td[data-col="current"] {
+    width: 32%;
+  }
+  td[data-col="past"] {
+    width: 32%;
+  }
+  td[data-col="compare"] {
+    width: 36%;
+  }
+}
+

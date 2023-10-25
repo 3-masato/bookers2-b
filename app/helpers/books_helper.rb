@@ -6,4 +6,13 @@ module BooksHelper
       "This user has not submitted anything yet."
     end
   end
+
+  def comparison_percentage(current_count, past_count)
+    if past_count == 0
+      "---"
+    else
+      ratio = current_count / past_count.to_f
+      "#{(ratio * 100).round}%"
+    end
+  end
 end

@@ -1,3 +1,17 @@
 <%= render "parts/frame", user: @user, type: :sidebar do %>
   <%= render 'books/index', books: @user.books, empty_message: empty_index_text(@user) %>
+
+  <h3>Comparisons of Daily and Weekly Post Counts</h3>
+  <%= render partial: 'books/compare', locals: {
+    current_label: "today",
+    past_label: "yesterday",
+    current_books: @today_book,
+    past_books: @yesterday_book
+  } %>
+  <%= render partial: 'books/compare', locals: {
+    current_label: "this week",
+    past_label: "last week",
+    current_books: @this_week_book,
+    past_books: @last_week_book
+  } %>
 <% end %>
