@@ -1,0 +1,16 @@
+<section class="mb-4">
+  <h2>Comparisons of Daily and Weekly Post Counts</h2>
+  <% dates = books.post_dates %>
+  <%= render partial: 'books/compare-table', locals: {
+    current_label: "today",
+    past_label: "yesterday",
+    current_books: dates[:today],
+    past_books: dates[:yesterday]
+  } %>
+  <%= render partial: 'books/compare-table', locals: {
+    current_label: "this week",
+    past_label: "last week",
+    current_books: dates[:this_week],
+    past_books: dates[:last_week]
+  } %>
+</section>
