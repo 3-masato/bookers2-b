@@ -1,4 +1,4 @@
 <%= render "parts/frame", user: @user, type: :sidebar do %>
   <%= render "books/index", books: @user.books, empty_message: empty_index_text(@user) %>
-  <%= render "books/comparisons", books: @user.books %>
+  <%= render "books/posted-chart", books: @user.books %>
 <% end %>

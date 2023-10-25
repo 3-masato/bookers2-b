@@ -9,9 +9,9 @@
     </thead>
     <tbody>
       <tr>
-        <td data-col="current"><%= current_books.count %></td>
-        <td data-col="past"><%= past_books.count %></td>
-        <td data-col="compare"><%= comparison_percentage(current_books.count, past_books.count) %></td>
+        <td data-col="current"><%= current_books %></td>
+        <td data-col="past"><%= past_books %></td>
+        <td data-col="compare"><%= comparison_percentage(current_books, past_books) %></td>
       </tr>
     </tbody>
   </table>

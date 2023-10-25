@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  # before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     redirect_to books_path
@@ -45,6 +45,21 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
+  end
+
+  def posted_counts
+    user = User.find(params[:user_id])
+    books = user.books
+
+    date_range = 0..6
+
+    data = books.post_dates(date_range)
+    labels = date_range.map { |n| n == 0 ? "Today" : "#{n} days ago" }.reverse
+
+    render json: {
+      data: data,
+      labels: labels
+    }
   end
 
   private
