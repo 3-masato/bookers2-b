@@ -30,6 +30,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def post_search
+    user = User.includes(:books).find(params[:user_id])
+    date = Date.parse(params[:created_at])
+    @books = user.books.with_details.where(created_at: date.all_day)
+    render :post_search_form
+  end
+
   private
 
   def user_params

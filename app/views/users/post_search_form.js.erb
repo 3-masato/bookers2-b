@@ -1,0 +1,9 @@
+$("#post-search").html(`
+  <h4>Search results</h4>
+  <div class="card" >
+    <div class="card-header">Posted counts</div>
+    <div class="card-body">
+      <%= j( @books.size ) %>
+    </div>
+  </div>
+`);

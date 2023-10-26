@@ -1,0 +1,15 @@
+<section>
+  <div class="form-body">
+    <%= form_with url: user_post_search_path(user), method: :get, local: false do |f| %>
+      <div class="input-group">
+        <%= f.date_field :created_at, class: "form-control" %>
+        <div class="input-group-append">
+          <%= f.submit "Search", class: "btn btn-info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="post-search">
+  </div>
+</section>

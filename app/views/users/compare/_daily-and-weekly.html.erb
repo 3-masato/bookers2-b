@@ -1,0 +1,15 @@
+<section>
+  <h4>Comparisons of Daily and Weekly Post Counts</h4>
+  <%= render partial: "users/compare/compare-table", locals: {
+    current_label: "today",
+    past_label: "yesterday",
+    current_books: books.created_today.size,
+    past_books: books.created_days_ago(1).size
+  } %>
+  <%= render partial: "users/compare/compare-table", locals: {
+    current_label: "this week",
+    past_label: "last week",
+    current_books: books.created_this_week.size,
+    past_books: books.created_last_week.size
+  } %>
+</section>

@@ -1,0 +1,25 @@
+<section>
+  <% weekly = books.weekly_posted_counts %>
+  <h4>Count of books posted</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <% weekly[:labels].each do |label| %>
+            <th><%= label %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% weekly[:datas].each do |data| %>
+            <td><%= data %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= render "users/compare/posted-chart", books: books %>
+  </div>
+</section>

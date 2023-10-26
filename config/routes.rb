@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "followings" => "relationships#followings", as: "followings"
     get "followers" => "relationships#followers", as: "followers"
     get "books/posted_counts" => "books#posted_counts", defaults: { format: "json" }
+    get "post_search" => "users#post_search"
   end
 
   get "/search", to: "searches#search"

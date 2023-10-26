@@ -1,0 +1,24 @@
+<section class="mb-4">
+  <%= render partial: "shared/tabs", locals: {
+    tabs: [
+      {
+        id: "tab1",
+        title: "Tab 1",
+        content_partial: "users/compare/daily-and-weekly",
+        locals: { books: books }
+      },
+      {
+        id: "tab2",
+        title: "Tab 2",
+        content_partial: "users/compare/count-of-weekly",
+        locals: { books: books }
+      },
+      {
+        id: "tab3",
+        title: "Tab 3",
+        content_partial: "users/compare/search",
+        locals: { books: books, user: user }
+      }
+    ]
+  } %>
+</section>
