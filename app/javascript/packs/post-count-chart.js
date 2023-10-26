@@ -1,4 +1,8 @@
+import { ready } from "./util.js";
+
 (async () => {
+  await ready();
+
   const canvas = document.getElementById("post-count-chart");
   if (canvas == null) {
     return;
@@ -24,7 +28,7 @@
         {
           label: "Count of books posted",
           data: posted_counts.data,
-          borderColor: "rgba(0 0 255 / 1)",
+          borderColor: "rgba(0 0 255)",
           backgroundColor: "transparent",
           tension: 0.4,
         },
@@ -49,4 +53,5 @@
   };
 
   const myLineChart = new Chart(canvas, chartConfig);
+
 })();
