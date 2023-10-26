@@ -1,44 +1,41 @@
 <section class="mb-4">
   <h2>Comparisons of Daily and Weekly Post Counts</h2>
-  <% dates = books.post_dates %>
-  <%= render partial: 'books/compare-table', locals: {
+  <%= render partial: "books/compare-table", locals: {
     current_label: "today",
     past_label: "yesterday",
-    current_books: dates[:today],
-    past_books: dates[:yesterday]
+    current_books: books.created_today.count,
+    past_books: books.created_days_ago(1).count
   } %>
-  <%= render partial: 'books/compare-table', locals: {
+  <%= render partial: "books/compare-table", locals: {
     current_label: "this week",
     past_label: "last week",
-    current_books: dates[:this_week],
-    past_books: dates[:last_week]
+    current_books: books.created_this_week.count,
+    past_books: books.created_last_week.count
   } %>
 </section>
 
-<section>
-  <h4>7日間分の投稿数</h4>
-  <table class='table table-bordered'>
-    <thead>
-      <tr>
-        <th>6日前</th>
-        <th>5日前</th>
-        <th>4日前</th>
-        <th>3日前</th>
-        <th>2日前</th>
-        <th>1日前</th>
-        <th>今日</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= books.created_6day_ago.count %></td>
-        <td><%= books.created_5day_ago.count %></td>
-        <td><%= books.created_4day_ago.count %></td>
-        <td><%= books.created_3day_ago.count %></td>
-        <td><%= books.created_2day_ago.count %></td>
-        <td><%= books.created_yesterday.count %></td>
-        <td><%= books.created_today.count %></td>
-      </tr>
-    </tbody>
-  </table>
+<section class="mb-4"><section>
+  <% weekly = books.weekly_posted_counts %>
+  <h2>Count of books posted</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <% weekly[:labels].each do |label| %>
+            <th><%= label %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% weekly[:datas].each do |data| %>
+            <td><%= data %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= render "books/posted-chart", books: @user.books %>
+  </div>
 </section>

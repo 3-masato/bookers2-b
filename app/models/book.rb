@@ -21,4 +21,16 @@ class Book < ApplicationRecord
   def self.post_dates(range)
     range.map { |n| created_days_ago(n).count }.reverse
   end
+
+  def self.weekly_posted_counts
+    date_range = 0..6
+
+    datas = post_dates(date_range)
+    labels = date_range.map { |n| n == 0 ? "Today" : "#{n} days ago" }.reverse
+
+    {
+      datas: datas,
+      labels: labels
+    }
+  end
 end

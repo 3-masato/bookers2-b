@@ -49,17 +49,7 @@ class BooksController < ApplicationController
 
   def posted_counts
     user = User.find(params[:user_id])
-    books = user.books
-
-    date_range = 0..6
-
-    data = books.post_dates(date_range)
-    labels = date_range.map { |n| n == 0 ? "Today" : "#{n} days ago" }.reverse
-
-    render json: {
-      data: data,
-      labels: labels
-    }
+    render json: user.books.weekly_posted_counts
   end
 
   private

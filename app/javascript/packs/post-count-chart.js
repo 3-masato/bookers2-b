@@ -16,7 +16,7 @@ import { ready } from "./util.js";
   const fetchURL = `/users/${userId}/books/posted_counts`;
   const posted_counts = await fetchJSON(fetchURL);
 
-  if (isUndefined(posted_counts) || isUndefined(posted_counts.data) || isUndefined(posted_counts.labels)) {
+  if (isUndefined(posted_counts) || isUndefined(posted_counts.datas) || isUndefined(posted_counts.labels)) {
     throw new Error(`Failed to fetch data from ${fetchURL}.`);
   }
 
@@ -27,7 +27,7 @@ import { ready } from "./util.js";
       datasets: [
         {
           label: "Count of books posted",
-          data: posted_counts.data,
+          data: posted_counts.datas,
           borderColor: "rgba(0 0 255)",
           backgroundColor: "transparent",
           tension: 0.4,
