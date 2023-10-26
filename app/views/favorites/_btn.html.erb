@@ -1,4 +1,4 @@
-<% fav_count = book.favorites.count %>
+<% fav_count = book.favorites.size %>
 <% is_faved = book.favorited_by?(current_user) %>
 
 <div class="favorite-body text-nowrap" data-faved="<%= is_faved %>">

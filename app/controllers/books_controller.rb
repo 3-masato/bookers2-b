@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   def index
     @user = current_user
-    @books = Book.all
+    @books = Book.includes(:user, :favorites, :book_comments).all
   end
 
   def edit

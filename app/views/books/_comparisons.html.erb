@@ -3,14 +3,14 @@
   <%= render partial: "books/compare-table", locals: {
     current_label: "today",
     past_label: "yesterday",
-    current_books: books.created_today.count,
-    past_books: books.created_days_ago(1).count
+    current_books: books.created_today.size,
+    past_books: books.created_days_ago(1).size
   } %>
   <%= render partial: "books/compare-table", locals: {
     current_label: "this week",
     past_label: "last week",
-    current_books: books.created_this_week.count,
-    past_books: books.created_last_week.count
+    current_books: books.created_this_week.size,
+    past_books: books.created_last_week.size
   } %>
 </section>
 
