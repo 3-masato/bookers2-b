@@ -22,6 +22,8 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
+  scope :with_relationships, -> { includes(:followings, :followers) }
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
@@ -39,7 +41,7 @@ class User < ApplicationRecord
   end
 
   def following?(user)
-    followings.include?(user)
+    followings.to_a.any? { |following| following.id == user.id }
   end
 end
 

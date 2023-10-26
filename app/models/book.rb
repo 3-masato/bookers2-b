@@ -14,24 +14,33 @@ class Book < ApplicationRecord
   scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) }
   scope :created_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day) }
 
+  scope :with_details, -> { includes(:user, :favorites, :book_comments) }
+
   def favorited_by?(user)
-    # favorites.exists?(user_id: user.id)
     favorites.any? { |favorite| favorite.user_id == user.id }
   end
 
   def self.post_dates(range)
-    range.map { |n| created_days_ago(n).count }.reverse
+    range.map { |n| created_days_ago(n).size }
   end
 
   def self.weekly_posted_counts
-    date_range = 0..6
+    date_range = 6.downto(0)
 
     datas = post_dates(date_range)
-    labels = date_range.map { |n| n == 0 ? "Today" : "#{n} days ago" }.reverse
+    labels = date_labels_for(date_range)
 
     {
       datas: datas,
       labels: labels
     }
+  end
+
+  private
+
+  def self.date_labels_for(range)
+    range.map do |n|
+      n == 0 ? "Today" : "#{n} days ago"
+    end.reverse
   end
 end

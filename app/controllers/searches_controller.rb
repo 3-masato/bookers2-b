@@ -10,9 +10,9 @@ class SearchesController < ApplicationController
 
     case @target
     when "user"
-      @records = User.search_for(:name, @content, @conditions)
+      @records = User.search_for(:name, @content, @conditions).with_relationships
     when "book"
-      @records = Book.search_for(:title, @content, @conditions)
+      @records = Book.search_for(:title, @content, @conditions).with_details
     end
   end
 end

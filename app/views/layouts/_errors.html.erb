@@ -2,7 +2,7 @@
   <div class="alert alert-danger my-2">
     <div class="font-weight-bold d-flex align-items-center h5">
       <i class="fa-solid fa-triangle-exclamation mr-2" style="font-size: 30px;"></i>
-      <%= pluralize(model.errors.count, "error") %> prohibited this obj from being saved:
+      <%= pluralize(model.errors.size, "error") %> prohibited this obj from being saved:
     </div>
     <ul class="ml-4">
       <% model.errors.full_messages.each do |message| %>

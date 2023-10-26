@@ -8,11 +8,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_books = @user.books.with_details
   end
 
   def index
     @user = current_user
-    @users = User.includes(:followings, :followers).all
+    @users = User.with_relationships
   end
 
   def edit
