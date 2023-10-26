@@ -1,0 +1,36 @@
+<div class="tabs">
+  <ul class="nav nav-tabs">
+    <% tabs.each_with_index do |tab, index| %>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= "active" if index.zero? %>"
+          id="<%= tab[:id] %>-tab"
+          data-toggle="tab"
+          href="#<%= tab[:id] %>"
+          role="tab"
+          aria-controls="<%= tab[:id] %>"
+          aria-selected="<%= index.zero? ? "true" : "false" %>"
+        >
+          <%= tab[:title] %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+    <% tabs.each_with_index do |tab, index| %>
+      <div
+        class="tab-pane p-4 fade <%= "show active" if index.zero? %>"
+        id="<%= tab[:id] %>"
+        role="tabpanel"
+        aria-labelledby="<%= tab[:id] %>-tab"
+      >
+        <% if tab[:content] %>
+          <%= tab[:content] %>
+        <% elsif tab[:content_partial] %>
+          <%= render partial: tab[:content_partial], locals: tab[:locals] || {} %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
